@@ -43,10 +43,7 @@ public class Cengkeh extends Tanaman implements TreatmentInterface {
     // PS: If medicine is null, return false. If it exist, return the status from medicine instances
     public boolean alreadyPesticide(){
         // Code here
-        if(this.medicine == null){
-            setCengkehPrice(getCengkehPrice() - getKemungkinanHargaTurun());
-            return false;
-        }
+        if(this.medicine == null) return false;
         else return true;
     }
 
@@ -106,11 +103,14 @@ public class Cengkeh extends Tanaman implements TreatmentInterface {
     // P.S: As per description at docs, if this instances not in state of "Pesticide", the price of 
     // crops will drop randomly. Bonus challenge if you can define the method
     // For easy solustion, maybe you can try use random function in java
-    public double getKemungkinanHargaTurun(){
+    // METHOD INI AKAN DIPANGGIL DI CLASS MAIN DI BAGIAN NEXT DAY --> PENURUNAN HARGA HANYA AKAN TERJADI SAAT GANTI HARI
+    public void hitungKemungkinanHargaTurun(){
         int probability = (int)(Math.random() * 2);
         boolean isTurunHarga = (probability == 1) ? true : false;
+        double penurunanHarga;
+        if(isTurunHarga) penurunanHarga = ((Math.random() * 10) + 1) * 100; // range penurunan harga = 100 sampai 1000
+        else penurunanHarga = 0;
 
-        if(isTurunHarga) return ((int)(Math.random() * 10) + 1) * 100; // range penurunan harga = 100 sampai 1000
-        else return 0;
+        setCengkehPrice(getCengkehPrice() - penurunanHarga);
     }
 }

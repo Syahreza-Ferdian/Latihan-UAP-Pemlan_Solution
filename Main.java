@@ -268,6 +268,8 @@ public class Main{
         if(cengkeh.getMedicine() != null && !cengkeh.getMedicine().isInEffect()) cengkeh.setMedicine(null);
         if(kepalaSawit.getMedicine() != null && !kepalaSawit.getMedicine().isInEffect()) kepalaSawit.setMedicine(null);
 
+        //PENURUNAN HARGA CENGKEH APABILA TDK DIKASIH PESTISIDA
+        if(cengkeh.getMedicine() == null) cengkeh.hitungKemungkinanHargaTurun();
         lineBreaker();
         System.out.printf("Hari telah berganti, dan Anda mendapatkan keuntungan sebanyak Rp. %,3.2f\n", totalProfit);
         lineBreaker();
